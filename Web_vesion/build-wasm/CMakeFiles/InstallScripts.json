@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/CelestiaSphere/Web_vesion/build-wasm/cmake_install.cmake",
+		"D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-build/cmake_install.cmake",
+		"D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-build/glm/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

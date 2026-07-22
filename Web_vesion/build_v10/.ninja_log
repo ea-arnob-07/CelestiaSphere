@@ -1,0 +1,14 @@
+# ninja log v7
+16	1107	8064588601775747	CMakeFiles/CosmoSim3D.dir/src/Mesh.cpp.obj	dc997ed8ab1b6b6f
+13	1450	8064588601705474	CMakeFiles/CosmoSim3D.dir/src/Camera.cpp.obj	77fb4e316480ba64
+39	1617	8064588602006578	CMakeFiles/CosmoSim3D.dir/src/Starfield.cpp.obj	44e4068cea9728bd
+30	1626	8064588601915248	CMakeFiles/CosmoSim3D.dir/src/ParticleSystem.cpp.obj	bc9e98565216ebf9
+34	1667	8064588601915248	CMakeFiles/CosmoSim3D.dir/src/Spacecraft.cpp.obj	a8c397a1da0bb89f
+5	1702	8064588601636515	CMakeFiles/CosmoSim3D.dir/src/main.cpp.obj	5bba943de82bbf28
+42	1769	8064588602054902	CMakeFiles/CosmoSim3D.dir/src/UiOverlay.cpp.obj	831c6cccbb9f66b1
+10	1780	8064588601705474	CMakeFiles/CosmoSim3D.dir/src/Shader.cpp.obj	c315bd3abe4d99c9
+19	1964	8064588601775747	CMakeFiles/CosmoSim3D.dir/src/Geometry.cpp.obj	ef644b737551ddbf
+8	2031	8064588601705474	CMakeFiles/CosmoSim3D.dir/src/Application.cpp.obj	5be561bddcf0e908
+22	2088	8064588601844961	CMakeFiles/CosmoSim3D.dir/src/SolarSystem.cpp.obj	9dd39c52058bba5c
+26	3233	8064588601844961	CMakeFiles/CosmoSim3D.dir/src/Renderer.cpp.obj	53da7a9d8114994e
+3233	3360	8064588633969002	CosmoSim3D_v6_UI_RENDER_FIX.exe	ad7adf56c874c937

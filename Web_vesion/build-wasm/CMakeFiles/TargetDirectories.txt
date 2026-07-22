@@ -1,0 +1,8 @@
+D:/CelestiaSphere/Web_vesion/build-wasm/CMakeFiles/CosmoSim3D.dir
+D:/CelestiaSphere/Web_vesion/build-wasm/CMakeFiles/edit_cache.dir
+D:/CelestiaSphere/Web_vesion/build-wasm/CMakeFiles/rebuild_cache.dir
+D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-build/CMakeFiles/edit_cache.dir
+D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-build/CMakeFiles/rebuild_cache.dir
+D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-build/glm/CMakeFiles/glm.dir
+D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-build/glm/CMakeFiles/edit_cache.dir
+D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-build/glm/CMakeFiles/rebuild_cache.dir

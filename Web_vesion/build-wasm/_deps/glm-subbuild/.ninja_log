@@ -1,0 +1,21 @@
+# ninja log v7
+3	113	8064627138876353	glm-populate-prefix/src/glm-populate-stamp/glm-populate-mkdir	91d7f88eaca2248a
+3	113	8064627138876353	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-mkdir	91d7f88eaca2248a
+113	33375	8064627471498274	glm-populate-prefix/src/glm-populate-stamp/glm-populate-download	f05293c084bf0187
+113	33375	8064627471498274	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-download	f05293c084bf0187
+33375	36994	8064627471613419	glm-populate-prefix/src/glm-populate-stamp/glm-populate-update	3cea0460561eb0a8
+33375	36994	8064627471613419	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-update	3cea0460561eb0a8
+36994	37095	8064627508693611	glm-populate-prefix/src/glm-populate-stamp/glm-populate-patch	b5258c61a3f6e305
+36994	37095	8064627508693611	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-patch	b5258c61a3f6e305
+37096	37195	8064627509736937	glm-populate-prefix/src/glm-populate-stamp/glm-populate-configure	59d4c892884d610b
+37096	37195	8064627509736937	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-configure	59d4c892884d610b
+37196	37292	8064627510703202	glm-populate-prefix/src/glm-populate-stamp/glm-populate-build	76cf6fcbb1723b2f
+37196	37292	8064627510703202	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-build	76cf6fcbb1723b2f
+37292	37391	8064627511680718	glm-populate-prefix/src/glm-populate-stamp/glm-populate-install	68ca8bf1de5b64e9
+37292	37391	8064627511680718	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-install	68ca8bf1de5b64e9
+37391	37492	8064627512655247	glm-populate-prefix/src/glm-populate-stamp/glm-populate-test	70acb3e534af7dbb
+37391	37492	8064627512655247	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-test	70acb3e534af7dbb
+37492	37631	8064627514047725	CMakeFiles/glm-populate-complete	e02a8fc7052ed6cb
+37492	37631	8064627514047725	glm-populate-prefix/src/glm-populate-stamp/glm-populate-done	e02a8fc7052ed6cb
+37492	37631	8064627514047725	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/CMakeFiles/glm-populate-complete	e02a8fc7052ed6cb
+37492	37631	8064627514047725	D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/glm-populate-prefix/src/glm-populate-stamp/glm-populate-done	e02a8fc7052ed6cb
