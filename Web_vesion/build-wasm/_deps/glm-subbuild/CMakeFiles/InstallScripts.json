@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"D:/CelestiaSphere/Web_vesion/build-wasm/_deps/glm-subbuild/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
