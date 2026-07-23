@@ -341,7 +341,11 @@ void Renderer::drawUi(const SolarSystem& system, const Camera& camera, const Sim
     ui.drawText(24.0f, 162.0f, 1.0f, muted, "1-8 PLANETS  M MOON  9 PLUTO  H BLACK HOLE");
     ui.drawText(24.0f, 176.0f, 1.0f, muted, "O ORBITS  L LABELS  N ATMOS  ARROWS CYCLE");
     ui.drawText(24.0f, 194.0f, 1.0f, accent, "SMARTER LABEL FILTER  CLEANER POPUP  MODERN PRESENTATION");
-    ui.drawText(24.0f, 214.0f, 1.0f, glm::vec4(0.84f, 0.92f, 1.0f, 0.64f), "DEVELOPED BY ESTIUK ARAFAT ARNOB");
+    const glm::vec4 gold(1.0f, 0.82f, 0.30f, 0.92f);
+    const glm::vec4 goldDim(1.0f, 0.72f, 0.20f, 0.70f);
+    ui.drawTextShadow(24.0f, 206.0f, 1.32f, gold, "DEVELOPED BY ESTIUK ARAFAT ARNOB");
+    ui.drawTextBold(24.0f, 206.0f, 1.32f, gold, "DEVELOPED BY");
+    ui.drawTextBold(24.0f + ui.textWidth("DEVELOPED BY ", 1.32f), 206.0f, 1.32f, glm::vec4(1.0f, 0.95f, 0.55f, 0.98f), "ESTIUK ARAFAT ARNOB");
 
     const float statusWidth = 340.0f;
     const float statusX = (static_cast<float>(width) - statusWidth) * 0.5f;
@@ -468,31 +472,49 @@ void Renderer::drawUi(const SolarSystem& system, const Camera& camera, const Sim
         const float helpHeight = 470.0f;
         const float helpX = (static_cast<float>(width) - helpWidth) * 0.5f;
         const float helpY = (static_cast<float>(height) - helpHeight) * 0.5f;
-        ui.drawRect(helpX, helpY, helpWidth, helpHeight, glm::vec4(0.01f, 0.03f, 0.08f, 0.38f));
-        ui.drawRect(helpX, helpY, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.32f));
-        ui.drawRect(helpX, helpY + helpHeight - 3.0f, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.32f));
-        ui.drawText(helpX + 20.0f, helpY + 18.0f, 2.05f, accent, "STARTUP POPUP MENU: BUTTON LIST AND CONTROLS");
-        ui.drawText(helpX + 20.0f, helpY + 50.0f, 1.12f, muted, "THIS POPUP APPEARS AUTOMATICALLY AT STARTUP. PRESS F1 TO HIDE OR SHOW IT. F11 TOGGLE FULLSCREEN.");
+        ui.drawRect(helpX, helpY, helpWidth, helpHeight, glm::vec4(0.01f, 0.02f, 0.07f, 0.82f));
+        ui.drawRect(helpX, helpY, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.70f));
+        ui.drawRect(helpX, helpY + helpHeight - 3.0f, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.35f));
+        ui.drawRect(helpX + helpWidth - 3.0f, helpY, 3.0f, helpHeight, glm::vec4(accent.r, accent.g, accent.b, 0.20f));
+        ui.drawRect(helpX, helpY, 3.0f, helpHeight, glm::vec4(accent.r, accent.g, accent.b, 0.20f));
+        ui.drawTextShadow(helpX + 20.0f, helpY + 16.0f, 2.1f, accent, "COSMOSIM 3D  |  CONTROLS & SHORTCUTS");
+        ui.drawText(helpX + 20.0f, helpY + 48.0f, 1.0f, muted, "PRESS F1 TO SHOW OR HIDE THIS PANEL  |  F11 TOGGLES FULLSCREEN");
+        ui.drawRect(helpX + 20.0f, helpY + 62.0f, helpWidth - 40.0f, 1.0f, glm::vec4(accent.r, accent.g, accent.b, 0.18f));
 
-        ui.drawText(helpX + 20.0f, helpY + 84.0f, 1.10f, accent, "NAVIGATION");
-        ui.drawText(helpX + 20.0f, helpY + 106.0f, 1.16f, white, "WASD = MOVE CAMERA     Q/E = DOWN-UP     SHIFT = SPEED BOOST");
-        ui.drawText(helpX + 20.0f, helpY + 128.0f, 1.16f, white, "MOUSE = LOOK AROUND     WHEEL = ZOOM     RIGHT MOUSE = CAPTURE/RELEASE CURSOR");
-        ui.drawText(helpX + 20.0f, helpY + 150.0f, 1.16f, white, "LEFT CLICK = SELECT OBJECT WHEN CURSOR IS FREE");
+        // --- NAVIGATION ---
+        ui.drawTextBold(helpX + 20.0f, helpY + 80.0f, 1.15f, accent, "[ CAMERA & NAVIGATION ]");
+        ui.drawText(helpX + 28.0f, helpY + 100.0f, 1.12f, white,  "W A S D       Move camera forward / back / left / right");
+        ui.drawText(helpX + 28.0f, helpY + 116.0f, 1.12f, white,  "Q / E         Move camera down / up");
+        ui.drawText(helpX + 28.0f, helpY + 132.0f, 1.12f, white,  "SHIFT         Hold for speed boost");
+        ui.drawText(helpX + 28.0f, helpY + 148.0f, 1.12f, white,  "MOUSE         Look around (right-click to capture or release)");
+        ui.drawText(helpX + 28.0f, helpY + 164.0f, 1.12f, white,  "SCROLL WHEEL  Zoom in or out");
+        ui.drawText(helpX + 28.0f, helpY + 180.0f, 1.12f, white,  "LEFT CLICK    Select a body when cursor is free");
+        ui.drawRect(helpX + 20.0f, helpY + 196.0f, helpWidth - 40.0f, 1.0f, glm::vec4(accent.r, accent.g, accent.b, 0.12f));
 
-        ui.drawText(helpX + 20.0f, helpY + 184.0f, 1.10f, accent, "SELECTION SHORTCUTS");
-        ui.drawText(helpX + 20.0f, helpY + 206.0f, 1.16f, white, "0 = SUN     1-8 = MAIN PLANETS     M = MOON     9 = PLUTO     H = BLACK HOLE");
-        ui.drawText(helpX + 20.0f, helpY + 228.0f, 1.16f, white, "LEFT/RIGHT = PREVIOUS-NEXT OBJECT     F = FOLLOW     T = TOP     C = CINEMATIC     V = FREE");
+        // --- SELECTION ---
+        ui.drawTextBold(helpX + 20.0f, helpY + 204.0f, 1.15f, accent, "[ SELECT & FOLLOW ]");
+        ui.drawText(helpX + 28.0f, helpY + 224.0f, 1.12f, white,  "0             Select the Sun");
+        ui.drawText(helpX + 28.0f, helpY + 240.0f, 1.12f, white,  "1 - 8         Select Mercury through Neptune");
+        ui.drawText(helpX + 28.0f, helpY + 256.0f, 1.12f, white,  "9 / M / H     Select Pluto / Moon / Black Hole");
+        ui.drawText(helpX + 28.0f, helpY + 272.0f, 1.12f, white,  "LEFT / RIGHT  Cycle to previous or next body");
+        ui.drawText(helpX + 28.0f, helpY + 288.0f, 1.12f, white,  "F             Follow selected body");
+        ui.drawRect(helpX + 20.0f, helpY + 304.0f, helpWidth - 40.0f, 1.0f, glm::vec4(accent.r, accent.g, accent.b, 0.12f));
 
-        ui.drawText(helpX + 20.0f, helpY + 262.0f, 1.10f, accent, "SIMULATION AND DISPLAY");
-        ui.drawText(helpX + 20.0f, helpY + 284.0f, 1.16f, white, "SPACE = PAUSE/RESUME     -/+ = CHANGE TIME SPEED     R = RESET     F11 = FULLSCREEN");
-        ui.drawText(helpX + 20.0f, helpY + 306.0f, 1.16f, white, "O = TOGGLE ORBITS     L = TOGGLE TAGS/LABELS     B = TOGGLE ASTEROIDS     N = TOGGLE ATMOSPHERE");
-        ui.drawText(helpX + 20.0f, helpY + 328.0f, 1.16f, white, "G = TOGGLE SCALE MODE     J = LAUNCH MISSION FROM EARTH     X = ABORT MISSION");
+        // --- VIEW & SIM ---
+        ui.drawTextBold(helpX + 20.0f, helpY + 312.0f, 1.15f, accent, "[ VIEW & SIMULATION ]");
+        ui.drawText(helpX + 28.0f, helpY + 332.0f, 1.12f, white,  "T / C / V     Top-down / Cinematic / Free camera");
+        ui.drawText(helpX + 28.0f, helpY + 348.0f, 1.12f, white,  "SPACE         Pause or resume simulation");
+        ui.drawText(helpX + 28.0f, helpY + 364.0f, 1.12f, white,  "- / +         Slow down or speed up time");
+        ui.drawText(helpX + 28.0f, helpY + 380.0f, 1.12f, white,  "O / L / B / N Toggle Orbits / Labels / Asteroids / Atmospheres");
+        ui.drawText(helpX + 28.0f, helpY + 396.0f, 1.12f, white,  "G             Toggle educational scale");
+        ui.drawText(helpX + 28.0f, helpY + 412.0f, 1.12f, white,  "J / X / R     Launch Mission / Abort / Reset epoch");
+        ui.drawRect(helpX + 20.0f, helpY + 428.0f, helpWidth - 40.0f, 1.0f, glm::vec4(accent.r, accent.g, accent.b, 0.12f));
 
-        ui.drawText(helpX + 20.0f, helpY + 362.0f, 1.10f, accent, "NOTES");
-        ui.drawText(helpX + 20.0f, helpY + 384.0f, 1.16f, white, "STARTUP VIEW IS SLIGHTLY ZOOMED IN. CAMERA ZOOM LIMITS ARE NOW MUCH CLOSER.");
-        ui.drawText(helpX + 20.0f, helpY + 406.0f, 1.16f, white, "SMART LABEL FILTERING REDUCES OVERLAP WHILE KEEPING IMPORTANT OBJECTS READABLE.");
-        ui.drawText(helpX + 20.0f, helpY + 428.0f, 1.12f, glm::vec4(0.84f, 0.92f, 1.0f, 0.68f), "DEVELOPED BY ESTIUK ARAFAT ARNOB");
-        ui.drawText(helpX + 20.0f, helpY + 446.0f, 1.02f, muted, "F1 = CLOSE OR REOPEN THIS POPUP MENU     ESC = EXIT APPLICATION");
+        // --- CREDIT ---
+        const glm::vec4 gold2(1.0f, 0.82f, 0.30f, 0.88f);
+        ui.drawTextBold(helpX + 20.0f, helpY + 440.0f, 1.12f, gold2, "DEVELOPED BY");
+        ui.drawTextBold(helpX + 20.0f + ui.textWidth("DEVELOPED BY ", 1.12f), helpY + 440.0f, 1.12f, glm::vec4(1.0f, 0.95f, 0.55f, 0.98f), "ESTIUK ARAFAT ARNOB");
+        ui.drawText(helpX + 20.0f, helpY + 458.0f, 1.0f, muted, "F1 CLOSE THIS MENU     ESC EXIT APPLICATION");
     }
 
     const float cx = static_cast<float>(width) * 0.5f;

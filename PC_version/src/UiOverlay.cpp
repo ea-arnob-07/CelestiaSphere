@@ -83,6 +83,19 @@ void UiOverlay::drawText(float x, float y, float scale, const glm::vec4& color, 
     }
 }
 
+void UiOverlay::drawTextBold(float x, float y, float scale, const glm::vec4& color, const std::string& text) {
+    // Draw twice, offset by 1px right, to simulate bold weight
+    drawText(x + 1.0f, y, scale, color, text);
+    drawText(x, y, scale, color, text);
+}
+
+void UiOverlay::drawTextShadow(float x, float y, float scale, const glm::vec4& color, const std::string& text) {
+    // Draw dark shadow first, then the text on top
+    const glm::vec4 shadow(0.0f, 0.0f, 0.0f, color.a * 0.6f);
+    drawText(x + 1.0f, y + 1.0f, scale, shadow, text);
+    drawText(x, y, scale, color, text);
+}
+
 void UiOverlay::drawBar(float x, float y, float width, float height, float value, const glm::vec4& background, const glm::vec4& foreground) {
     drawRect(x, y, width, height, background);
     drawRect(x + 1.0f, y + 1.0f, std::max(0.0f, width - 2.0f) * std::clamp(value, 0.0f, 1.0f), std::max(0.0f, height - 2.0f), foreground);

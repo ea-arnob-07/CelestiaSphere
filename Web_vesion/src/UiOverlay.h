@@ -23,6 +23,8 @@ public:
     void begin(int width, int height);
     void drawRect(float x, float y, float width, float height, const glm::vec4& color);
     void drawText(float x, float y, float scale, const glm::vec4& color, const std::string& text);
+    void drawTextBold(float x, float y, float scale, const glm::vec4& color, const std::string& text);
+    void drawTextShadow(float x, float y, float scale, const glm::vec4& color, const std::string& text);
     void drawBar(float x, float y, float width, float height, float value, const glm::vec4& background, const glm::vec4& foreground);
     void end(const Shader& shader);
 
