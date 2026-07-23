@@ -14,6 +14,7 @@
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
+#include <emscripten/html5.h>
 #endif
 namespace cosmosim {
 
@@ -59,6 +60,22 @@ bool Application::initialize(int width, int height, const std::string& title) {
     glfwSetCursorPosCallback(window_, cursorPositionCallback);
     glfwSetScrollCallback(window_, scrollCallback);
     glfwSetMouseButtonCallback(window_, mouseButtonCallback);
+
+#ifdef __EMSCRIPTEN__
+    emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, this, false, [](int, const EmscriptenUiEvent *uiEvent, void *userData) -> EM_BOOL {
+        Application* app = static_cast<Application*>(userData);
+        if (app && app->window_) {
+            glfwSetWindowSize(app->window_, uiEvent->windowInnerWidth, uiEvent->windowInnerHeight);
+        }
+        return EM_TRUE;
+    });
+    
+    // Set initial size
+    double cssW = 800.0, cssH = 600.0;
+    emscripten_get_element_css_size("#canvas", &cssW, &cssH);
+    glfwSetWindowSize(window_, static_cast<int>(cssW), static_cast<int>(cssH));
+#endif
+
 
 #ifndef __EMSCRIPTEN__
     glewExperimental = GL_TRUE;

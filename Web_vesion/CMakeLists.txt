@@ -43,7 +43,7 @@ if(NOT EMSCRIPTEN)
     target_link_libraries(CosmoSim3D PRIVATE OpenGL::GL GLEW::GLEW glfw glm::glm)
 else()
     target_link_libraries(CosmoSim3D PRIVATE glm::glm)
-    target_link_options(CosmoSim3D PRIVATE "SHELL:-s USE_GLFW=3" "SHELL:-s USE_WEBGL2=1" "SHELL:-s FULL_ES3=1" "SHELL:-s WASM=1" "SHELL:--preload-file ${CMAKE_CURRENT_SOURCE_DIR}/shaders@/shaders" "SHELL:-s ALLOW_MEMORY_GROWTH=1")
+    target_link_options(CosmoSim3D PRIVATE "SHELL:-s USE_GLFW=3" "SHELL:-s USE_WEBGL2=1" "SHELL:-s FULL_ES3=1" "SHELL:-s WASM=1" "SHELL:--preload-file ${CMAKE_CURRENT_SOURCE_DIR}/shaders@/shaders" "SHELL:-s ALLOW_MEMORY_GROWTH=1" "SHELL:--shell-file ${CMAKE_CURRENT_SOURCE_DIR}/shell.html")
     target_compile_options(CosmoSim3D PRIVATE -sUSE_GLFW=3)
 endif()
 
