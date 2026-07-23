@@ -39,7 +39,7 @@ jobs:
       - name: Prepare Files for Deployment
         run: |
           mkdir -p public
-          cp Web_vesion/build-wasm/index.html public/
+          cp Web_vesion/build-wasm/CosmoSim3D.html public/index.html
           cp Web_vesion/build-wasm/CosmoSim3D.js public/
           cp Web_vesion/build-wasm/CosmoSim3D.wasm public/
           if [ -f Web_vesion/build-wasm/CosmoSim3D.data ]; then cp Web_vesion/build-wasm/CosmoSim3D.data public/; fi
