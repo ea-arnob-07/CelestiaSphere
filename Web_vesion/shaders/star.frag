@@ -1,22 +1,39 @@
 #version 330 core
 in float vBrightness;
+in float vSize;
 out vec4 FragColor;
 void main() {
     vec2 p = gl_PointCoord * 2.0 - 1.0;
     float d = dot(p, p);
     if (d > 1.0) discard;
 
-    float core = exp(-d * 8.5);
-    float halo = exp(-d * 2.2);
-    float sparkle = mix(0.85, 1.25, fract(vBrightness * 11.7));
-    float alpha = clamp((core * 0.9 + halo * 0.35) * (0.25 + vBrightness * 1.35), 0.0, 1.0);
+    // Tight bright core + soft halo + very faint outer glow (diffraction-like)
+    float core    = exp(-d * 10.0);
+    float halo    = exp(-d * 2.8);
+    float outerGlow = exp(-d * 0.9) * 0.18;
 
-    vec3 cool = vec3(0.62, 0.76, 1.0);
-    vec3 warm = vec3(1.0, 0.92, 0.76);
-    vec3 neutral = vec3(0.92, 0.95, 1.0);
-    float tintSelector = fract(vBrightness * 7.1 + 0.17);
-    vec3 tint = mix(cool, neutral, smoothstep(0.18, 0.55, tintSelector));
-    tint = mix(tint, warm, smoothstep(0.55, 0.95, tintSelector));
+    // Brighter stars get a larger, more visible halo
+    float haloStrength = 0.28 + vBrightness * 0.55;
+    float alpha = clamp(
+        core * 1.0 + halo * haloStrength + outerGlow,
+        0.0, 1.0
+    ) * (0.20 + vBrightness * 1.55);
+    alpha = clamp(alpha, 0.0, 1.0);
 
-    FragColor = vec4(tint * (0.55 + sparkle * vBrightness), alpha);
+    // Realistic stellar color temperature: blue giants, yellow dwarfs, red giants
+    vec3 blueStar   = vec3(0.68, 0.82, 1.00);  // O/B type
+    vec3 whiteStar  = vec3(0.94, 0.96, 1.00);  // A/F type
+    vec3 yellowStar = vec3(1.00, 0.96, 0.78);  // G type (like Sun)
+    vec3 orangeStar = vec3(1.00, 0.80, 0.52);  // K type
+    float tintSel = fract(vBrightness * 7.3 + 0.13);
+    vec3 tint;
+    if (tintSel < 0.28) {
+        tint = mix(blueStar, whiteStar, tintSel / 0.28);
+    } else if (tintSel < 0.62) {
+        tint = mix(whiteStar, yellowStar, (tintSel - 0.28) / 0.34);
+    } else {
+        tint = mix(yellowStar, orangeStar, (tintSel - 0.62) / 0.38);
+    }
+
+    FragColor = vec4(tint, alpha);
 }

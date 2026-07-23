@@ -89,7 +89,7 @@ bool Application::initialize(int width, int height, const std::string& title) {
         return false;
     }
     particles_.initialize(2200);
-    starfield_.initialize(9000);
+    starfield_.initialize(28000);
     ui_.initialize();
 
     selectBody(solarSystem_.indexByName("Sun"), false);

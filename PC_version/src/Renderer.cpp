@@ -341,11 +341,11 @@ void Renderer::drawUi(const SolarSystem& system, const Camera& camera, const Sim
     ui.drawText(24.0f, 162.0f, 1.0f, muted, "1-8 PLANETS  M MOON  9 PLUTO  H BLACK HOLE");
     ui.drawText(24.0f, 176.0f, 1.0f, muted, "O ORBITS  L LABELS  N ATMOS  ARROWS CYCLE");
     ui.drawText(24.0f, 194.0f, 1.0f, accent, "SMARTER LABEL FILTER  CLEANER POPUP  MODERN PRESENTATION");
-    const glm::vec4 gold(1.0f, 0.82f, 0.30f, 0.92f);
-    const glm::vec4 goldDim(1.0f, 0.72f, 0.20f, 0.70f);
-    ui.drawTextShadow(24.0f, 206.0f, 1.32f, gold, "DEVELOPED BY ESTIUK ARAFAT ARNOB");
-    ui.drawTextBold(24.0f, 206.0f, 1.32f, gold, "DEVELOPED BY");
-    ui.drawTextBold(24.0f + ui.textWidth("DEVELOPED BY ", 1.32f), 206.0f, 1.32f, glm::vec4(1.0f, 0.95f, 0.55f, 0.98f), "ESTIUK ARAFAT ARNOB");
+    const glm::vec4 creditBlue(0.35f, 0.80f, 1.0f, 0.95f);
+    const glm::vec4 creditNameBlue(0.55f, 0.95f, 1.0f, 1.0f);
+    ui.drawTextShadow(24.0f, 206.0f, 1.32f, creditBlue, "DEVELOPED BY ESTIUK ARAFAT ARNOB");
+    ui.drawTextBold(24.0f, 206.0f, 1.32f, creditBlue, "DEVELOPED BY");
+    ui.drawTextBold(24.0f + ui.textWidth("DEVELOPED BY ", 1.32f), 206.0f, 1.32f, creditNameBlue, "ESTIUK ARAFAT ARNOB");
 
     const float statusWidth = 340.0f;
     const float statusX = (static_cast<float>(width) - statusWidth) * 0.5f;
@@ -511,9 +511,10 @@ void Renderer::drawUi(const SolarSystem& system, const Camera& camera, const Sim
         ui.drawRect(helpX + 20.0f, helpY + 428.0f, helpWidth - 40.0f, 1.0f, glm::vec4(accent.r, accent.g, accent.b, 0.12f));
 
         // --- CREDIT ---
-        const glm::vec4 gold2(1.0f, 0.82f, 0.30f, 0.88f);
-        ui.drawTextBold(helpX + 20.0f, helpY + 440.0f, 1.12f, gold2, "DEVELOPED BY");
-        ui.drawTextBold(helpX + 20.0f + ui.textWidth("DEVELOPED BY ", 1.12f), helpY + 440.0f, 1.12f, glm::vec4(1.0f, 0.95f, 0.55f, 0.98f), "ESTIUK ARAFAT ARNOB");
+        const glm::vec4 creditBlue2(0.35f, 0.80f, 1.0f, 0.92f);
+        const glm::vec4 creditNameBlue2(0.55f, 0.95f, 1.0f, 1.0f);
+        ui.drawTextBold(helpX + 20.0f, helpY + 440.0f, 1.12f, creditBlue2, "DEVELOPED BY");
+        ui.drawTextBold(helpX + 20.0f + ui.textWidth("DEVELOPED BY ", 1.12f), helpY + 440.0f, 1.12f, creditNameBlue2, "ESTIUK ARAFAT ARNOB");
         ui.drawText(helpX + 20.0f, helpY + 458.0f, 1.0f, muted, "F1 CLOSE THIS MENU     ESC EXIT APPLICATION");
     }
 

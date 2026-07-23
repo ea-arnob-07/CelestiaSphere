@@ -24,13 +24,30 @@ void Starfield::initialize(std::size_t count) {
         float z = randomRange(rng, -1.0f, 1.0f);
         const float angle = randomRange(rng, 0.0f, glm::two_pi<float>());
         const float milkyWayBias = randomRange(rng, 0.0f, 1.0f);
-        if (milkyWayBias < 0.42f) {
-            z = std::clamp(randomRange(rng, -0.22f, 0.22f) + std::sin(angle * 2.0f) * 0.08f, -1.0f, 1.0f);
+        if (milkyWayBias < 0.52f) {
+            // Denser Milky Way band: more stars concentrated in the galactic plane
+            z = std::clamp(randomRange(rng, -0.18f, 0.18f) + std::sin(angle * 2.0f) * 0.12f, -1.0f, 1.0f);
         }
         const float xy = std::sqrt(std::max(0.0f, 1.0f - z * z));
-        const float radius = randomRange(rng, 190.0f, 340.0f);
-        const float brightness = std::pow(randomRange(rng, 0.18f, 1.0f), 1.55f);
-        const float size = 0.8f + std::pow(randomRange(rng, 0.0f, 1.0f), 3.0f) * 5.6f;
+        // Distribute on two shells: a dense near shell and a sparse distant shell
+        // Near shell: 300-600, far shell: 600-950 — both beyond camera far plane cutoff logic
+        const float shellPick = randomRange(rng, 0.0f, 1.0f);
+        const float radius = (shellPick < 0.55f)
+            ? randomRange(rng, 300.0f, 600.0f)
+            : randomRange(rng, 600.0f, 950.0f);
+        // Realistic stellar luminosity: most stars are faint (power-law distribution)
+        const float rawBrightness = randomRange(rng, 0.0f, 1.0f);
+        const float brightness = std::pow(rawBrightness, 2.1f) * 0.78f + rawBrightness * 0.22f;
+        // Realistic star sizes: mostly tiny points, a few larger giants
+        const float sizeRoll = randomRange(rng, 0.0f, 1.0f);
+        float size;
+        if (sizeRoll < 0.78f) {
+            size = 0.7f + sizeRoll * 0.8f;               // tiny to small
+        } else if (sizeRoll < 0.94f) {
+            size = 1.3f + (sizeRoll - 0.78f) * 7.0f;    // medium
+        } else {
+            size = 2.6f + std::pow(sizeRoll - 0.94f, 0.5f) * 9.0f; // bright giants
+        }
         stars.push_back({
             glm::vec3(xy * std::cos(angle), z, xy * std::sin(angle)) * radius,
             brightness,
