@@ -1,0 +1,53 @@
+name: Build and Deploy WebAssembly
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: latest
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Configure CMake
+        run: |
+          cd Web_vesion
+          mkdir -p build-wasm
+          cd build-wasm
+          emcmake cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+
+      - name: Build Project
+        run: |
+          cd Web_vesion/build-wasm
+          cmake --build .
+
+      - name: Prepare Files for Deployment
+        run: |
+          mkdir -p public
+          cp Web_vesion/build-wasm/index.html public/
+          cp Web_vesion/build-wasm/CosmoSim3D.js public/
+          cp Web_vesion/build-wasm/CosmoSim3D.wasm public/
+          if [ -f Web_vesion/build-wasm/CosmoSim3D.data ]; then cp Web_vesion/build-wasm/CosmoSim3D.data public/; fi
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          force_orphan: true
