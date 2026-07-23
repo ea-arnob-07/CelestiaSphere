@@ -116,9 +116,10 @@ bool Application::initialize(int width, int height, const std::string& title) {
 
     selectBody(solarSystem_.indexByName("Sun"), false);
     camera_.setMode(CameraMode::Free);
-    const float startupRadius = std::clamp(solarSystem_.maximumOrbitRadius(settings_) * 0.62f, 62.0f, 76.0f);
-    camera_.setPosition(glm::vec3(0.0f, startupRadius * 0.34f, startupRadius * 1.12f));
-    camera_.setYawPitch(-90.0f, -10.0f);
+    // Cinematic startup: closer zoom, dramatic angle so solar system fills screen behind popup
+    const float startupRadius = std::clamp(solarSystem_.maximumOrbitRadius(settings_) * 0.48f, 50.0f, 64.0f);
+    camera_.setPosition(glm::vec3(startupRadius * 0.22f, startupRadius * 0.28f, startupRadius * 1.05f));
+    camera_.setYawPitch(-92.0f, -22.0f);
     showHelp_ = true;
 #ifdef __EMSCRIPTEN__
     // Browser requires a user gesture (click) before pointer lock is allowed.

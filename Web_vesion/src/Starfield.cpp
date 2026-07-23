@@ -25,28 +25,38 @@ void Starfield::initialize(std::size_t count) {
         const float angle = randomRange(rng, 0.0f, glm::two_pi<float>());
         const float milkyWayBias = randomRange(rng, 0.0f, 1.0f);
         if (milkyWayBias < 0.52f) {
-            // Denser Milky Way band: more stars concentrated in the galactic plane
+            // Denser Milky Way band
             z = std::clamp(randomRange(rng, -0.18f, 0.18f) + std::sin(angle * 2.0f) * 0.12f, -1.0f, 1.0f);
         }
         const float xy = std::sqrt(std::max(0.0f, 1.0f - z * z));
-        // Distribute on two shells: a dense near shell and a sparse distant shell
-        // Near shell: 300-600, far shell: 600-950 — both beyond camera far plane cutoff logic
+
+        // Three shells for rich star density at all zoom levels:
+        // Inner shell (100-300): visible when zoomed close to planets/moons
+        // Mid shell (300-600): visible at solar system scale
+        // Far shell (600-950): deep space backdrop
         const float shellPick = randomRange(rng, 0.0f, 1.0f);
-        const float radius = (shellPick < 0.55f)
-            ? randomRange(rng, 300.0f, 600.0f)
-            : randomRange(rng, 600.0f, 950.0f);
-        // Realistic stellar luminosity: most stars are faint (power-law distribution)
+        float radius;
+        if (shellPick < 0.30f) {
+            radius = randomRange(rng, 100.0f, 300.0f);   // inner - close zoom
+        } else if (shellPick < 0.65f) {
+            radius = randomRange(rng, 300.0f, 600.0f);   // mid
+        } else {
+            radius = randomRange(rng, 600.0f, 950.0f);   // far
+        }
+
+        // Realistic stellar luminosity: power-law (most faint, few bright)
         const float rawBrightness = randomRange(rng, 0.0f, 1.0f);
         const float brightness = std::pow(rawBrightness, 2.1f) * 0.78f + rawBrightness * 0.22f;
-        // Realistic star sizes: mostly tiny points, a few larger giants
+
+        // Realistic star sizes: mostly tiny dots, a few giants
         const float sizeRoll = randomRange(rng, 0.0f, 1.0f);
         float size;
         if (sizeRoll < 0.78f) {
-            size = 0.7f + sizeRoll * 0.8f;               // tiny to small
+            size = 0.7f + sizeRoll * 0.8f;
         } else if (sizeRoll < 0.94f) {
-            size = 1.3f + (sizeRoll - 0.78f) * 7.0f;    // medium
+            size = 1.3f + (sizeRoll - 0.78f) * 7.0f;
         } else {
-            size = 2.6f + std::pow(sizeRoll - 0.94f, 0.5f) * 9.0f; // bright giants
+            size = 2.6f + std::pow(sizeRoll - 0.94f, 0.5f) * 9.0f;
         }
         stars.push_back({
             glm::vec3(xy * std::cos(angle), z, xy * std::sin(angle)) * radius,

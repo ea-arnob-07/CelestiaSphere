@@ -472,11 +472,11 @@ void Renderer::drawUi(const SolarSystem& system, const Camera& camera, const Sim
         const float helpHeight = 470.0f;
         const float helpX = (static_cast<float>(width) - helpWidth) * 0.5f;
         const float helpY = (static_cast<float>(height) - helpHeight) * 0.5f;
-        ui.drawRect(helpX, helpY, helpWidth, helpHeight, glm::vec4(0.01f, 0.02f, 0.07f, 0.82f));
-        ui.drawRect(helpX, helpY, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.70f));
-        ui.drawRect(helpX, helpY + helpHeight - 3.0f, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.35f));
-        ui.drawRect(helpX + helpWidth - 3.0f, helpY, 3.0f, helpHeight, glm::vec4(accent.r, accent.g, accent.b, 0.20f));
-        ui.drawRect(helpX, helpY, 3.0f, helpHeight, glm::vec4(accent.r, accent.g, accent.b, 0.20f));
+        ui.drawRect(helpX, helpY, helpWidth, helpHeight, glm::vec4(0.01f, 0.02f, 0.08f, 0.52f));
+        ui.drawRect(helpX, helpY, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.85f));
+        ui.drawRect(helpX, helpY + helpHeight - 3.0f, helpWidth, 3.0f, glm::vec4(accent.r, accent.g, accent.b, 0.45f));
+        ui.drawRect(helpX + helpWidth - 3.0f, helpY, 3.0f, helpHeight, glm::vec4(accent.r, accent.g, accent.b, 0.30f));
+        ui.drawRect(helpX, helpY, 3.0f, helpHeight, glm::vec4(accent.r, accent.g, accent.b, 0.30f));
         ui.drawTextShadow(helpX + 20.0f, helpY + 16.0f, 2.1f, accent, "COSMOSIM 3D  |  CONTROLS & SHORTCUTS");
         ui.drawText(helpX + 20.0f, helpY + 48.0f, 1.0f, muted, "PRESS F1 TO SHOW OR HIDE THIS PANEL  |  F11 TOGGLES FULLSCREEN");
         ui.drawRect(helpX + 20.0f, helpY + 62.0f, helpWidth - 40.0f, 1.0f, glm::vec4(accent.r, accent.g, accent.b, 0.18f));
